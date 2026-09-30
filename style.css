@@ -1,0 +1,72 @@
+:root {
+    --primary-blue: #102c72;
+    --deep-blue: #07194a;
+    --cyan: #19b9e8;
+    --gold: #d9bf67;
+    --light-gray: #f5f8ff;
+    --white: #ffffff;
+    --red: #d94b55;
+    --green: #18a878;
+    --text: #1b2d52;
+    --muted: #71809e;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at 15% 15%, rgba(25, 185, 232, 0.42), transparent 32%), linear-gradient(135deg, var(--deep-blue), var(--primary-blue) 52%, #087fae);
+    color: var(--text); display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; padding: 24px; position: relative; overflow-x: hidden;
+}
+.container { width: 100%; max-width: 520px; background: rgba(255,255,255,0.97); padding: 38px 34px 30px; border-radius: 24px; box-shadow: 0 24px 60px rgba(3, 18, 64, 0.32); text-align: center; position: relative; border: 1px solid rgba(255,255,255,0.65); }
+.logo { width: 142px; height: 142px; object-fit: cover; border-radius: 50%; margin-bottom: 18px; box-shadow: 0 8px 22px rgba(16,44,114,0.18); }
+.hidden { display: none !important; }
+
+h2, h3 { color: var(--primary-blue); letter-spacing: 0.01em; margin-bottom: 10px; }
+h2 { font-size: 1.7rem; }
+h3 { font-size: 1.25rem; }
+p { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+
+input, select { width: 100%; padding: 13px 15px; border: 1px solid #d9e1f0; border-radius: 10px; margin-bottom: 15px; font-family: inherit; color: var(--text); background: #fbfcff; outline: none; transition: 0.2s; }
+input:focus, select:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(25,185,232,0.14); }
+
+.btn { width: 100%; padding: 14px 15px; border: none; border-radius: 10px; background: linear-gradient(100deg, var(--primary-blue), #0b6eaa); color: var(--white); font-weight: 600; cursor: pointer; transition: 0.25s; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.02em; box-shadow: 0 7px 14px rgba(16,44,114,0.18); }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 18px rgba(16,44,114,0.25); }
+.btn:active { transform: translateY(0); }
+.btn-red { background-color: var(--red); }
+.btn-green { background-color: var(--green); }
+.btn-gray { background: #71809e; }
+
+/* Novo Layout dos Cards de Culto com Checkbox */
+.culto-card { border: 1px solid #e0e7f3; border-left: 5px solid var(--cyan); padding: 15px; border-radius: 12px; margin-bottom: 10px; display: flex; align-items: center; text-align: left; cursor: pointer; transition: 0.2s; background: #fff; }
+.culto-card:hover { background-color: #f4fbff; border-color: #b7e5f3; transform: translateX(2px); }
+
+.culto-checkbox-area { margin-right: 15px; }
+.culto-checkbox-area input[type="checkbox"] { width: 22px; height: 22px; cursor: pointer; margin: 0; }
+
+.culto-info { flex: 1; }
+.culto-info strong { display: block; font-size: 0.9rem; color: var(--primary-blue); }
+.culto-info span { font-size: 0.75rem; color: var(--muted); }
+
+.badge { font-size: 0.65rem; font-weight: bold; padding: 3px 7px; border-radius: 10px; display: inline-block; margin-top: 5px; }
+.badge-open { background: #e8f5e9; color: var(--green); }
+.badge-full { background: #ffebee; color: var(--red); }
+.badge-ja-inscrito { background: #e3f2fd; color: #1e88e5; }
+.btn-cancelar-inscricao { background: none; border: 1px solid var(--red); border-radius: 5px; color: var(--red); cursor: pointer; font-family: inherit; font-size: 0.65rem; font-weight: 600; margin-left: 8px; padding: 4px 7px; }
+.btn-cancelar-inscricao:hover { background-color: #ffebee; }
+
+/* Estilo Admin */
+.admin-box { background: #f6f9ff; padding: 15px; border-radius: 12px; text-align: left; margin-top: 15px; border: 1px solid #e1e8f5; }
+.btn-adm-link { background: none; border: none; color: #a1aec4; cursor: pointer; font-size: 0.7rem; position: absolute; top: 14px; right: 16px; transition: 0.2s; }
+.btn-adm-link:hover { color: var(--primary-blue); }
+
+.adm-list-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; font-size: 0.8rem; }
+.adm-actions button { background: none; border: none; cursor: pointer; margin-left: 10px; font-size: 1rem; }
+.btn-edit { color: var(--primary-blue); }
+.btn-delete { color: var(--red); }
+
+@media (max-width: 560px) {
+    body { padding: 12px; }
+    .container { padding: 32px 20px 22px; border-radius: 18px; }
+    .logo { width: 116px; height: 116px; }
+}

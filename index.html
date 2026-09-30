@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escala de Servos | Maanaim</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div class="container">
+    <button class="btn-adm-link" onclick="mostrarTela('step-login-adm')"><i class="fa-solid fa-lock"></i>ADM</button>
+    <img src="Logo.png" alt="Maanaim" class="logo">
+
+    <!-- TELA 1: IDENTIFICAÇÃO -->
+    <div id="step-1">
+        <h2>Escala de Servos</h2>
+        <p>Preencha seus dados para prosseguir.</p>
+        <input type="text" id="nome-servo" placeholder="Nome completo">
+        <input type="tel" id="tel-servo" placeholder="Seu WhatsApp">
+        <button class="btn" onclick="entrarNaEscala()">Continuar</button>
+    </div>
+
+    <!-- TELA 2: ESCOLHA DO MINISTÉRIO -->
+    <div id="step-ministerio" class="hidden">
+        <h2>Escolha o ministério</h2>
+        <p>Selecione onde você deseja servir.</p>
+        <select id="ministerio-servo">
+            <option value="" selected disabled>Escolha a equipe</option>
+            <option value="integracao">Integração</option>
+            <option value="estacionamento">Estacionamento</option>
+        </select>
+        <button class="btn" onclick="confirmarMinisterio()">Ver disponibilidade</button>
+        <button class="btn btn-gray" onclick="mostrarTela('step-1')">Voltar</button>
+    </div>
+
+    <!-- TELA 3: LISTA DE CULTOS (MÚLTIPLA ESCOLA) -->
+    <div id="step-2" class="hidden">
+        <h3 id="txt-boas-vindas"></h3>
+        <p>Marque os cultos em que deseja servir:</p>
+        
+        <div id="lista-cultos"></div>
+        
+        <button class="btn btn-green" id="btn-confirmar-escala" onclick="salvarVariasEscalas()">Confirmar Inscrições</button>
+        <button class="btn btn-gray" onclick="location.reload()">Voltar</button>
+    </div>
+
+    <!-- TELA 3: SUCESSO -->
+    <div id="step-3" class="hidden">
+        <i class="fa-solid fa-circle-check" style="font-size: 4rem; color: var(--green); margin-bottom: 20px;"></i>
+        <h2>Confirmado!</h2>
+        <p>Suas escolhas foram registradas com sucesso.</p>
+        <button class="btn" onclick="location.reload()">Sair</button>
+    </div>
+
+    <!-- TELA ADM: LOGIN -->
+    <div id="step-login-adm" class="hidden">
+        <h2>Acesso ADM</h2>
+        <input type="password" id="senha-adm" placeholder="Senha do Painel">
+        <button class="btn" onclick="logarAdmin()">Entrar</button>
+        <button class="btn btn-gray" onclick="location.reload()">Cancelar</button>
+    </div>
+
+    <!-- TELA ADM: DASHBOARD -->
+    <div id="step-dashboard" class="hidden">
+        <h3>Painel de Gestão</h3>
+        <select id="ministerio-admin" onchange="admCarregarListaCultos()">
+            <option value="integracao">Integração</option>
+            <option value="estacionamento">Estacionamento</option>
+        </select>
+        
+        <div class="admin-box" id="form-culto">
+            <label id="lbl-form-culto">Novo CULTO</label>
+            <input type="hidden" id="edit-id">
+            <input type="text" id="adm-desc" placeholder="Ex: Culto de Domingo">
+            <input type="datetime-local" id="adm-data">
+            <input type="number" id="adm-vagas" placeholder="Vagas" value="10">
+            <button class="btn btn-green" id="btn-salvar-culto" onclick="admSalvarCulto()">Cadastrar Culto</button>
+            <button class="btn btn-gray hidden" id="btn-cancelar-edit" onclick="limparFormAdmin()">Cancelar Edição</button>
+        </div>
+
+        <div class="admin-box">
+            <label>CULTOS EXISTENTES</label>
+            <div id="adm-lista-cultos" style="max-height: 200px; overflow-y: auto; margin-top: 10px;"></div>
+        </div>
+
+        <div class="admin-box">
+            <label>Relatórios e Divulgação</label>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn btn-green" style="flex: 1; min-width: 150px;" onclick="admGerarRelatorio()">
+                    <i class="fa-solid fa-file-excel"></i> Planilha (CSV)
+                </button>
+                <button class="btn" style="flex: 1; min-width: 150px; background-color: #25D366;" onclick="admGerarTextoZap()">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </button>
+            </div>
+            <button class="btn btn-red" style="margin-top: 15px;" onclick="admLimparEscalas()">
+                <i class="fa-solid fa-trash-can"></i> Reiniciar Escalas
+            </button>
+        </div>
+
+        <button class="btn btn-gray" style="margin-top: 20px;" onclick="location.reload()">Sair do Painel</button>
+    </div>
+</div>
+
+<textarea id="temp-copy" class="hidden"></textarea>
+
+<script src="script.js"></script>
+</body>
+</html>
